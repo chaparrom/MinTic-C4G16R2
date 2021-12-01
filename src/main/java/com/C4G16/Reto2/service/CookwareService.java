@@ -42,7 +42,7 @@ public class CookwareService {
     public Cookware update(Cookware cookware) {
         
         Optional <Cookware> temporal = cookwareRepository.getCookware(cookware.getReference());
-        
+
         if (!temporal.isEmpty()) {
             if (cookware.getBrand() != null) 
                 temporal.get().setBrand(cookware.getBrand());
@@ -54,6 +54,10 @@ public class CookwareService {
                 temporal.get().setDimensiones(cookware.getDimensiones());
             if (cookware.getDescription()!= null)
                 temporal.get().setDescription(cookware.getDescription());
+            if (cookware.isAvailability())
+                temporal.get().setAvailability(true);
+            else
+                temporal.get().setAvailability(false);
             temporal.get().setPrice(cookware.getPrice());
             temporal.get().setQuantity(cookware.getQuantity());
             if (cookware.getPhotography()!= null)
